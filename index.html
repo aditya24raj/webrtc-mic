@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webrtc-mic</title>
+</head>
+<body>
+    <audio id="player" autoplay controls="true"></audio>
+    <script>
+        async function playVideoFromCamera() {
+            try {
+                const constraints = {'video': false, 'audio': true};
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                const playerElement = document.querySelector('#player');
+                playerElement.srcObject = stream;
+            } catch(error) {
+                console.error('Error opening video camera.', error);
+            }
+        }
+        
+        playVideoFromCamera();
+    </script>
+</body>
+</html>
